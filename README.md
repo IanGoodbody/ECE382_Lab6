@@ -37,7 +37,7 @@ far easier to implement on the limited space of the robot breadboard (although I
 The software package will be realized according to the attached header draft. The function prototype code and
 supporting comments are given below. The software package will have two sets of functions, one which can dynamically 
 change whe wheel parameters (disables, rewrites, then enables) within the function, and another set that should be 
-enveloped by a stop and go signal 
+enveloped by stop() and go() methods that allows the user to manually set the different parameters.
 
 ```c
 // Left wheel correction factor, used in case the motors have different speeds to the same signal 
