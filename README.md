@@ -129,3 +129,35 @@ opposite directions. While the problem could have been solved by switching what 
 going to the motors were swapped so the drive pins would be analgous to one another on the chip. The second issue that
 arose was that each pin can only be tied to certain timer outputs. While the right wheel worked right off the bat, the
 pins were tied to the second coutner output, the side of the chip controling the left wheel had to be rewired so that 
+the motor drive pins actually lined up with the appropriate timer. Because I was using both sides of the MSP430, I was
+able to use Timer A 1 to control the wheels and keep Timer A 0 open for other tasks.
+
+##### Robot Basic Programming
+
+The only major change wo the robot program operation was the addition of a waiting function. This program utalized
+the open Timer A 0 to delay a number of miliseconds passed as a parameter. Origionally the clock was not set to 8 MHz 
+ansd so a milisecond time delay had to be manually calibrated using the oscilloscope. Once the code was found to set 
+the clock to the appropriate frequency, the function was recalibrated to work consistantly.
+
+The functions that controled the motor directions (the low level functions outlined above) were set so that the user 
+could control the PWM cycle to within 0.01%, and until the motors were classified, the max duty cycle was set to 60%
+The wheel speed correction factor was not used (but still kept in the code) because the MSP430 has no hardware 
+multiplier and in stead the correction was handeled in a second level of movement functions.
+
+High level control was established using a second set of motor control functions. These functions simply performed 
+actions requied by basic functionality: move forward, backward, short left, long left, short right, long right.
+Because the `moveBothWheels` function did not adjust for differentials in wheels speeds, for the move forward, and 
+move backwards high level functions it was replaced by setting each wheel invividually. By setting each wheel the 
+motors could be individually calibrated so that robot would move straight forward and backward. 
+
+These high level functions were set to move the robot in only a certain direction for a fixed amount of time, and also
+included a 500 milisecond pause between movements to avoid surging the current. This was to simplify the code for the 
+A Functionality whith each remote input associated with a particular function.
+
+After some simple testing, the robot movement function worked more or less consistantly. There seem to be some 
+inconsistancies in the motor power function. I had broken off the 12 V leads and had to jurry rig a solution that I 
+believe had been holding. The left motor makes more noise than it should while running and seems to have a reduced
+torque output.
+
+#### A Functionality
+
