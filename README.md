@@ -32,7 +32,7 @@ is only slightly more complex for the user to implement in code (with an extra d
 far easier to implement on the limited space of the robot breadboard (although I did do it and it was beautiful). 
 
 
-#### Software package
+##### Software package
 
 The software package will be realized according to the attached header draft. The function prototype code and
 supporting comments are given below. The software package will have two sets of functions, one which can dynamically 
@@ -106,6 +106,9 @@ void setBothWheels(unsigned int dutyCycle, unsighed char direction);
   *         unsighed char direction: specifies the direction of the wheel
   * Function: Sets the right wheel drive parameters
   */
+  
+  
+  
 void setRightWheel(unsigned int dutyCycle, unsigned char direction);
   
   /*
@@ -116,4 +119,13 @@ void setRightWheel(unsigned int dutyCycle, unsigned char direction);
   */
 void setLeftWheel(unsigned int dutyCycle, unsigned char direction);
 ```
+#### Basic Functionality
 
+##### Robot Build
+
+The robot circuit was build according to the schematic from the prelab. The only issue that presented itself was 
+because the motors were pointed in opposite directions, setting the red wire high for both wheels made them spin in 
+opposite directions. While the problem could have been solved by switching what pins were what in the code, the wires 
+going to the motors were swapped so the drive pins would be analgous to one another on the chip. The second issue that
+arose was that each pin can only be tied to certain timer outputs. While the right wheel worked right off the bat, the
+pins were tied to the second coutner output, the side of the chip controling the left wheel had to be rewired so that 
