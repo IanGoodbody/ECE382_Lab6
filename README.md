@@ -173,3 +173,12 @@ configuring the timer to work both with the IR sensor and the wait function. Or 
 the A functionality not working. Durring the last lab, the timer configuration changed whenever a perifferial module 
 was added leading to some adjustment for some time sensitive functions (IR signal changes). It was getting late so the
 debugging process that was used for the last lab was not used here and the A functionality was not finished. 
+
+Additionally the sequence programmed for the A functionality involved the wheels moving for a short time then the 
+indicator light turning on. For every reset of the chip and running of the debugging the wheels turning and light
+illuminating sequence was very inconsistent. It is possible that the program is getting stuck somehow in the wait
+sequence.
+
+#### Documenatation
+
+None.
