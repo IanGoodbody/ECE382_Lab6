@@ -161,3 +161,15 @@ torque output.
 
 #### A Functionality
 
+##### Circuit Modifications
+
+For A functionality, the IR sensor was added to the circuit with high tied to the 3.3 V regulated source as well as a
+red indicator LED intended to show when the robot was ready to recieve a remote signal. 
+
+##### Program Modifications
+
+Because the IR sensor had to keep track of the time between the IR signal changes, there was a signficant challenge in
+configuring the timer to work both with the IR sensor and the wait function. Or at least that is what I attribute to 
+the A functionality not working. Durring the last lab, the timer configuration changed whenever a perifferial module 
+was added leading to some adjustment for some time sensitive functions (IR signal changes). It was getting late so the
+debugging process that was used for the last lab was not used here and the A functionality was not finished. 
