@@ -23,6 +23,8 @@ a foreard and backward driver signal. Later implementations had only one drive s
 bit for each wheel. Steps involved in setting the direction would be to set the drive PWM signal to constant low, 
 configure the direction pins for each wheel, then reseting the duty cycles to the desired values for each wheel.
 
+![alt text](https://raw.githubusercontent.com/IanGoodbody/ECE382_Lab6/master/Images/Prelim_schematic.jpg)
+
 A second design was accomplished by wiring the two motor leads to the output pins on each side of the motor driver
 chip. This design makes use of the two enable pins on the SN754410 driver to turn each wheel on and off whilst 
 the wheel conditions are being set. Unlike the first design it requires drive pins for both forward and backward
@@ -31,6 +33,7 @@ it's compliment drive signal will give the user control in both forward and back
 is only slightly more complex for the user to implement in code (with an extra drive pin setting for each wheel), and 
 far easier to implement on the limited space of the robot breadboard (although I did do it and it was beautiful). 
 
+![alt text](https://raw.githubusercontent.com/IanGoodbody/ECE382_Lab6/master/Images/Final_schematic.jpg)
 
 ##### Software package
 
