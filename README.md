@@ -32,7 +32,7 @@ is only slightly more complex for the user to implement in code (with an extra d
 far easier to implement on the limited space of the robot breadboard (although I did do it and it was beautiful). 
 
 
-#### Software package
+##### Software package
 
 The software package will be realized according to the attached header draft. The function prototype code and
 supporting comments are given below. The software package will have two sets of functions, one which can dynamically 
@@ -106,6 +106,9 @@ void setBothWheels(unsigned int dutyCycle, unsighed char direction);
   *         unsighed char direction: specifies the direction of the wheel
   * Function: Sets the right wheel drive parameters
   */
+  
+  
+  
 void setRightWheel(unsigned int dutyCycle, unsigned char direction);
   
   /*
@@ -116,4 +119,66 @@ void setRightWheel(unsigned int dutyCycle, unsigned char direction);
   */
 void setLeftWheel(unsigned int dutyCycle, unsigned char direction);
 ```
+#### Basic Functionality
 
+##### Robot Build
+
+The robot circuit was build according to the schematic from the prelab. The only issue that presented itself was 
+because the motors were pointed in opposite directions, setting the red wire high for both wheels made them spin in 
+opposite directions. While the problem could have been solved by switching what pins were what in the code, the wires 
+going to the motors were swapped so the drive pins would be analgous to one another on the chip. The second issue that
+arose was that each pin can only be tied to certain timer outputs. While the right wheel worked right off the bat, the
+pins were tied to the second coutner output, the side of the chip controling the left wheel had to be rewired so that 
+the motor drive pins actually lined up with the appropriate timer. Because I was using both sides of the MSP430, I was
+able to use Timer A 1 to control the wheels and keep Timer A 0 open for other tasks.
+
+##### Robot Basic Programming
+
+The only major change wo the robot program operation was the addition of a waiting function. This program utalized
+the open Timer A 0 to delay a number of miliseconds passed as a parameter. Origionally the clock was not set to 8 MHz 
+ansd so a milisecond time delay had to be manually calibrated using the oscilloscope. Once the code was found to set 
+the clock to the appropriate frequency, the function was recalibrated to work consistantly.
+
+The functions that controled the motor directions (the low level functions outlined above) were set so that the user 
+could control the PWM cycle to within 0.01%, and until the motors were classified, the max duty cycle was set to 60%
+The wheel speed correction factor was not used (but still kept in the code) because the MSP430 has no hardware 
+multiplier and in stead the correction was handeled in a second level of movement functions.
+
+High level control was established using a second set of motor control functions. These functions simply performed 
+actions requied by basic functionality: move forward, backward, short left, long left, short right, long right.
+Because the `moveBothWheels` function did not adjust for differentials in wheels speeds, for the move forward, and 
+move backwards high level functions it was replaced by setting each wheel invividually. By setting each wheel the 
+motors could be individually calibrated so that robot would move straight forward and backward. 
+
+These high level functions were set to move the robot in only a certain direction for a fixed amount of time, and also
+included a 500 milisecond pause between movements to avoid surging the current. This was to simplify the code for the 
+A Functionality whith each remote input associated with a particular function.
+
+After some simple testing, the robot movement function worked more or less consistantly. There seem to be some 
+inconsistancies in the motor power function. I had broken off the 12 V leads and had to jurry rig a solution that I 
+believe had been holding. The left motor makes more noise than it should while running and seems to have a reduced
+torque output.
+
+#### A Functionality
+
+##### Circuit Modifications
+
+For A functionality, the IR sensor was added to the circuit with high tied to the 3.3 V regulated source as well as a
+red indicator LED intended to show when the robot was ready to recieve a remote signal. 
+
+##### Program Modifications
+
+Because the IR sensor had to keep track of the time between the IR signal changes, there was a signficant challenge in
+configuring the timer to work both with the IR sensor and the wait function. Or at least that is what I attribute to 
+the A functionality not working. Durring the last lab, the timer configuration changed whenever a perifferial module 
+was added leading to some adjustment for some time sensitive functions (IR signal changes). It was getting late so the
+debugging process that was used for the last lab was not used here and the A functionality was not finished. 
+
+Additionally the sequence programmed for the A functionality involved the wheels moving for a short time then the 
+indicator light turning on. For every reset of the chip and running of the debugging the wheels turning and light
+illuminating sequence was very inconsistent. It is possible that the program is getting stuck somehow in the wait
+sequence.
+
+#### Documenatation
+
+None.
