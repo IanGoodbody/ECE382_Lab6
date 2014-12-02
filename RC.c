@@ -2,7 +2,8 @@
  * RC.c
  *
  *  Created on: Nov 24, 2014
- *      Author: C16Ian.Goodbody
+ *      Author: Ian Goodbody
+ *    Function: Intendended to implement IR remote control functionality. Incomplete
  */
 
 #include <msp430.h>

@@ -3,6 +3,10 @@
 
 /*
  * dacne.c
+ *
+ *  Created on: Nov 19, 2014
+ *      Author: Ian Goodbody
+ *    Function: Implements the Basic functionality for the robot including basic movement functions
  */
 
 void waitMiliseconds(unsigned short time)

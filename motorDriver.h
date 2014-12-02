@@ -2,7 +2,8 @@
  * motorDriver.h
  *
  *  Created on: Nov 19, 2014
- *      Author: C16Ian.Goodbody
+ *      Author: Ian Goodbody
+ *      Function: Provides necessary setup for robot motor control
  */
 
 #ifndef MOTORDRIVER_H_
